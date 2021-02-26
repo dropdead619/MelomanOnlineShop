@@ -1,0 +1,13 @@
+﻿using Models.Abstract;
+using System;
+
+namespace UI
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+        }
+    }
+}
