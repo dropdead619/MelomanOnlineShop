@@ -11,8 +11,9 @@ namespace Services
         public void Send(string number)
         {
             Number = number;
+            //Убрал токен авторизации, т.к. он все равно скинется когда закину на гит
             string accountSid = "AC9cf7e06038b71632ddfa89adfc6f7979";
-            string authToken = "6db4baf7b474ee57d0a946f5ae0ed09e";
+            string authToken = "";
 
             var randomCode = RandomCodeGenerationService.Generate(4);
 
@@ -23,7 +24,8 @@ namespace Services
                 from: new Twilio.Types.PhoneNumber("+16516153710"),
                 to: new Twilio.Types.PhoneNumber(Number)
             );
-            Console.WriteLine(message.Sid);
+
+            //Скорее всего эту часть можно вынести в UI
             bool checkUserCode = true;
             var SendedUserCode = " ";
             while (checkUserCode)
