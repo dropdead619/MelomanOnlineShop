@@ -22,7 +22,7 @@ namespace Services
             var message = MessageResource.Create(
                 body: $"Your 4-digits code is: {randomCode} ",
                 from: new Twilio.Types.PhoneNumber("+19287702279"),
-                to: new Twilio.Types.PhoneNumber(Number)
+                to: new Twilio.Types.PhoneNumber($"+{Number}")
             );
 
             var SendedUserCode = "";

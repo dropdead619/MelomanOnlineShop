@@ -10,9 +10,13 @@ namespace UI
     {
         static void Main(string[] args)
         {
+
             //Да все проверил, немного изменил метод TwillioMessageService чтобы возвращал true/false и в UI можно было отловить
 
             // Насчет БД, там скорее всего в таблицу нужно будет добавить Категорию (Книги, Музыка, Игры, Фильмы), Описание, Комментарии, Рейтинг
+
+            //UPD: Добавил альтернативный сервис смс, там можно без верификации смс на любой номер получать
+            // сайт https://smsc.kz/
 
             // Для проверки меню создал экземпляр
             var books = new List<Book>();
@@ -38,11 +42,13 @@ namespace UI
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        Console.WriteLine("Please, enter your phone number: (for example: +7XXXXXXXXXXX)");
+                        //Добавил "+" в сам метод, чтобы просто вводить номер телефона
+                        Console.WriteLine("Please, enter your phone number: (for example: 7XXXXXXXXXXX)");
                         try
                         {
-                            var twilio = new TwillioMessageService();
-                            if (twilio.Send(Console.ReadLine()) == true)
+                            //var sendingSms = new TwillioMessageService();
+                            var sendingSms = new SmsKzMessageService();
+                            if (sendingSms.Send(Console.ReadLine()) == true)
                             {
                                 Console.WriteLine("Вы успешно зарегистрированы!");
                             }
