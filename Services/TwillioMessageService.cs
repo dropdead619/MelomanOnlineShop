@@ -8,12 +8,12 @@ namespace Services
     public class TwillioMessageService : IMessageService
     {
         public string Number { get; set; }
-        public void Send(string number)
+        public bool Send(string number)
         {
             Number = number;
             //Убрал токен авторизации, т.к. он все равно скинется когда закину на гит
-            string accountSid = "AC9cf7e06038b71632ddfa89adfc6f7979";
-            string authToken = "";
+            string accountSid = "ACaddac989f2f1e947d2615d5b598719a2";
+            string authToken = "cbc41ca9b42be97590c9f8647ca5d49f";
 
             var randomCode = RandomCodeGenerationService.Generate(4);
 
@@ -21,27 +21,21 @@ namespace Services
 
             var message = MessageResource.Create(
                 body: $"Your 4-digits code is: {randomCode} ",
-                from: new Twilio.Types.PhoneNumber("+16516153710"),
+                from: new Twilio.Types.PhoneNumber("+19287702279"),
                 to: new Twilio.Types.PhoneNumber(Number)
             );
 
-            //Скорее всего эту часть можно вынести в UI
-            bool checkUserCode = true;
-            var SendedUserCode = " ";
-            while (checkUserCode)
-            {
-                Console.WriteLine("Enter your 4-digits code: ");
+            var SendedUserCode = "";
+            Console.WriteLine("Enter your 4-digits code: ");
 
-                SendedUserCode = Console.ReadLine();
-                if (SendedUserCode == randomCode)
-                {
-                    Console.WriteLine("Success!");
-                    checkUserCode = false;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect 4-digits code, try again!");
-                }
+            SendedUserCode = Console.ReadLine();
+            if (SendedUserCode == randomCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

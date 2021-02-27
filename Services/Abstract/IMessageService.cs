@@ -6,6 +6,6 @@ namespace Services.Abstract
 {
     public interface IMessageService
     {
-        public void Send(string number);
+        public bool Send(string number);
     }
 }
