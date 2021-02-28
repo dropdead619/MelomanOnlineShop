@@ -2,6 +2,7 @@
 using Models.Abstract;
 using Services;
 using System;
+using Data;
 using System.Collections.Generic;
 
 namespace UI
@@ -28,7 +29,7 @@ namespace UI
                 GenreName = new Genre { Id=1,Name="Роман"},
                 Price=1000                
             });
-
+            ConfigurationService.Init();
             Console.WriteLine(@"*********************************************
 *			                    *
 *			                    *
@@ -42,19 +43,18 @@ namespace UI
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        //Добавил "+" в сам метод, чтобы просто вводить номер телефона
-                        Console.WriteLine("Please, enter your phone number: (for example: 7XXXXXXXXXXX)");
+                        Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
                         try
                         {
                             //var sendingSms = new TwillioMessageService();
                             var sendingSms = new SmsKzMessageService();
-                            if (sendingSms.Send(Console.ReadLine()) == true)
+                            if (sendingSms.Send(Console.ReadLine(),Actions.Registration) == true)
                             {
                                 Console.WriteLine("Вы успешно зарегистрированы!");
                             }
                             else
                             {
-                                Console.WriteLine("Ошибка регистрации!");
+                                Console.WriteLine("Ошибка регистрации! Введены не верные данные, либо пользователь уже зарегистрирован");
                             }
                         }
                         catch (Exception ex)
@@ -63,7 +63,26 @@ namespace UI
                         }
                         break;
                     case "2":
-                        // TODO Логика авторизации через проверку номера в БД, потом через if/else реализация меню далее
+                        Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
+                        try
+                        {
+                            //var sendingSms = new TwillioMessageService();
+                            var sendingSms = new SmsKzMessageService();
+                            if (sendingSms.Send(Console.ReadLine(),Actions.Authentication) == true)
+                            {
+                                Console.WriteLine("Вы успешно авторизованы! Для продолжения нажмите любую клавишу");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Введены не верные данные, повторите попытку");
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         while (true)
                         {
                             Console.Clear();

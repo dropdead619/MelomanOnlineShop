@@ -9,7 +9,7 @@ namespace Data
     {
         public override void Insert(User user)
         {
-            var insertSqlScript = "Insert into Users (phoneNumber,smsCode) values (@phoneNumber, @smsCode)";
+            var insertSqlScript = "Insert into Users (phoneNumber) values (@phoneNumber)";
             using (var transaction = sqlConnection.BeginTransaction())
             using (var command = factory.CreateCommand())
             {
@@ -25,12 +25,12 @@ namespace Data
 
                     command.Parameters.Add(phoneNumberSqlParameter);
 
-                    var smsCodeSqlParameter = command.CreateParameter();
-                    smsCodeSqlParameter.DbType = System.Data.DbType.String;
-                    smsCodeSqlParameter.Value = user.SmsCode;
-                    smsCodeSqlParameter.ParameterName = "smsCode";
+                    //var smsCodeSqlParameter = command.CreateParameter();
+                    //smsCodeSqlParameter.DbType = System.Data.DbType.String;
+                    //smsCodeSqlParameter.Value = user.SmsCode;
+                    //smsCodeSqlParameter.ParameterName = "smsCode";
 
-                    command.Parameters.Add(smsCodeSqlParameter);
+                    //command.Parameters.Add(smsCodeSqlParameter);
 
                     command.ExecuteNonQuery();
 
@@ -59,7 +59,7 @@ namespace Data
                 {
                     Id = int.Parse(dataReader["id"].ToString()),
                     PhoneNumber = dataReader["phoneNumber"].ToString(),
-                    SmsCode = dataReader["smsCode"].ToString()
+                    //SmsCode = dataReader["smsCode"].ToString()
                 });
             }
 
