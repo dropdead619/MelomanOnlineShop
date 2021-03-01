@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Qiwi.BillPayments" Version="0.1.5" />
+    <PackageReference Include="Qiwi.BillPayments.Json.Newtonsoft" Version="0.1.5" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Twilio" Version="5.55.0" />
   </ItemGroup>

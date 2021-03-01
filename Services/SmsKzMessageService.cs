@@ -1,9 +1,5 @@
-﻿using Data;
-using Models;
-using Services.Abstract;
+﻿using Services.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Services
 {
@@ -11,7 +7,7 @@ namespace Services
     {
         public bool Send(string number)
         {
-            SMSC smsc = new SMSC();
+            var smsc = new SMSC();
             var randomCode = RandomCodeGenerationService.Generate(4);
             smsc.send_sms(number, randomCode);
 

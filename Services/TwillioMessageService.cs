@@ -1,6 +1,4 @@
-﻿using Data;
-using Models;
-using Services.Abstract;
+﻿using Services.Abstract;
 using System;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -13,9 +11,8 @@ namespace Services
         public bool Send(string number)
         {
             Number = number;
-            //Убрал токен авторизации, т.к. он все равно скинется когда закину на гит
-            string accountSid = "ACaddac989f2f1e947d2615d5b598719a2";
-            string authToken = "cbc41ca9b42be97590c9f8647ca5d49f";
+            var accountSid = "ACaddac989f2f1e947d2615d5b598719a2";
+            var authToken = "cbc41ca9b42be97590c9f8647ca5d49f";
 
             var randomCode = RandomCodeGenerationService.Generate(4);
 
