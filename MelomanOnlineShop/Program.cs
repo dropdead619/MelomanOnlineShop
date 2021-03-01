@@ -11,9 +11,6 @@ namespace UI
     {
         static void Main(string[] args)
         {
-
-            //Да все проверил, немного изменил метод TwillioMessageService чтобы возвращал true/false и в UI можно было отловить
-
             // Насчет БД, там скорее всего в таблицу нужно будет добавить Категорию (Книги, Музыка, Игры, Фильмы), Описание, Комментарии, Рейтинг
 
             //UPD: Добавил альтернативный сервис смс, там можно без верификации смс на любой номер получать
@@ -46,9 +43,7 @@ namespace UI
                         Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
                         try
                         {
-                            //var sendingSms = new TwillioMessageService();
-                            var sendingSms = new SmsKzMessageService();
-                            if (sendingSms.Send(Console.ReadLine(),Actions.Registration) == true)
+                            if (AuthUtil.Registration(Console.ReadLine()) == true)
                             {
                                 Console.WriteLine("Вы успешно зарегистрированы!");
                             }
@@ -66,9 +61,7 @@ namespace UI
                         Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
                         try
                         {
-                            //var sendingSms = new TwillioMessageService();
-                            var sendingSms = new SmsKzMessageService();
-                            if (sendingSms.Send(Console.ReadLine(),Actions.Authentication) == true)
+                            if (AuthUtil.Authorization(Console.ReadLine()) == true)
                             {
                                 Console.WriteLine("Вы успешно авторизованы! Для продолжения нажмите любую клавишу");
                                 Console.ReadLine();
@@ -106,6 +99,7 @@ namespace UI
                                             {
                                                 if (item == book.Id)
                                                 {
+                                                    //TODO
                                                     // Описание товара и предложение покупки
                                                 }
                                             }
