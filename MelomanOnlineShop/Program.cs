@@ -11,20 +11,6 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            var qiwi = new QiwiPaymentService();
-            if (qiwi.Purchase(10))
-            {
-                Console.WriteLine("Спасибо за покупку!");
-            }
-            else
-            {
-                Console.WriteLine("Что-то пошло не так! Ожидайте");
-            };
-/*            // Насчет БД, там скорее всего в таблицу нужно будет добавить Категорию (Книги, Музыка, Игры, Фильмы), Описание, Комментарии, Рейтинг
-
-            //UPD: Добавил альтернативный сервис смс, там можно без верификации смс на любой номер получать
-            // сайт https://smsc.kz/
-s
             // Для проверки меню создал экземпляр
             var books = new List<Book>();
             books.Add(new Book
@@ -108,8 +94,15 @@ s
                                             {
                                                 if (item == book.Id)
                                                 {
-                                                    //TODO
-                                                    // Описание товара и предложение покупки
+                                                    var qiwi = new QiwiPaymentService();
+                                                    if (qiwi.Purchase(1))
+                                                    {
+                                                        Console.WriteLine("Спасибо за покупку!");
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                    };
                                                 }
                                             }
                                             break;
@@ -125,7 +118,6 @@ s
                         return;
                 }
             }
-*/
         }
     }
 }

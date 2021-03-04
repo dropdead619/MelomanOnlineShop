@@ -37,9 +37,9 @@ secretKey: "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6
                 invoiceURL = invoiceURL.Replace("&", "^&");
                 Process.Start(new ProcessStartInfo("cmd", $"/c start {invoiceURL}") { CreateNoWindow = true });
 
-                while (invoice.Status.ValueString == "WAITING" || invoice.Status.ValueString == "SUCCESS")
+                while (invoice.Status.ValueString == "WAITING" || invoice.Status.ValueString == "PAID")
                 {
-                    if (invoice.Status.ValueString == "SUCCESS")
+                    if (invoice.Status.ValueString == "PAID")
                     {
                         return true;
                     }
