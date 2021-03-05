@@ -9,7 +9,7 @@ namespace Data
     {
         public override void Insert(User user)
         {
-            var insertSqlScript = "Insert into Users (phoneNumber) values (@phoneNumber)";
+            var insertSqlScript = "Insert into Users (id,phoneNumber) values (@id,@phoneNumber)";
             using (var transaction = sqlConnection.BeginTransaction())
             using (var command = factory.CreateCommand())
             {
@@ -18,19 +18,20 @@ namespace Data
                 try
                 {
                     command.Transaction = transaction;
+                    var idSqlParameter = command.CreateParameter();
+                    idSqlParameter.DbType = System.Data.DbType.Guid;
+                    idSqlParameter.Value = user.Id;
+                    idSqlParameter.ParameterName = "id";
+
+                    command.Parameters.Add(idSqlParameter);
+
+                    command.Transaction = transaction;
                     var phoneNumberSqlParameter = command.CreateParameter();
                     phoneNumberSqlParameter.DbType = System.Data.DbType.String;
                     phoneNumberSqlParameter.Value = user.PhoneNumber;
                     phoneNumberSqlParameter.ParameterName = "phoneNumber";
 
                     command.Parameters.Add(phoneNumberSqlParameter);
-
-                    //var smsCodeSqlParameter = command.CreateParameter();
-                    //smsCodeSqlParameter.DbType = System.Data.DbType.String;
-                    //smsCodeSqlParameter.Value = user.SmsCode;
-                    //smsCodeSqlParameter.ParameterName = "smsCode";
-
-                    //command.Parameters.Add(smsCodeSqlParameter);
 
                     command.ExecuteNonQuery();
 
@@ -57,9 +58,9 @@ namespace Data
             {
                 users.Add(new User
                 {
-                    Id = int.Parse(dataReader["id"].ToString()),
+                    Id = Guid.Parse(dataReader["id"].ToString()),
                     PhoneNumber = dataReader["phoneNumber"].ToString(),
-                    //SmsCode = dataReader["smsCode"].ToString()
+                    
                 });
             }
 

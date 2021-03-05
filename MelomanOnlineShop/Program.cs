@@ -98,10 +98,12 @@ namespace UI
                                                     if (qiwi.Purchase(1))
                                                     {
                                                         Console.WriteLine("Спасибо за покупку!");
+                                                        Console.ReadLine();
                                                     }
                                                     else
                                                     {
                                                         Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                        Console.ReadLine();
                                                     };
                                                 }
                                             }
