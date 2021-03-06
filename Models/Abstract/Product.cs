@@ -5,30 +5,13 @@ namespace Models.Abstract
 {
     public abstract class Product
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public Author AuthorName { get; set; }
         public Genre GenreName { get; set; }
         public double Price { get; set; }
+        public int Quantity { get; set; }
         public ICollection<string> Comments { get; set; }
-        public double Rating { get; set; }
-
-        // Конструктор не обязательно же создавать? Мы через свойства из БД вроде будем данные брать...
-
-        //public Product(int id, string name, Author author, Genre genre, double price)
-        //{
-        //    if (id <= 0 && price <= 0)
-        //    {
-        //        Id = id;
-        //        Price = price;
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("Id and Price can't be less than zero!");
-        //    }
-        //    Name = name;
-        //    AuthorName = author;
-        //    GenreName = genre;
-        //}
+        public ICollection<double> Rating { get; set; }
     }
 }
