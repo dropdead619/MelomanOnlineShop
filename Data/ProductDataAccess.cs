@@ -20,12 +20,12 @@ namespace Data
 
         public override ICollection<Product> Select()
         {
-            var selectSqlScript = $"select p.id, p.name, a.id as authorId, a.name as authorName, g.id as genreId, g.name as genreName, c.name as category, " +
-                $"cm.comment as comments, price, quantity, rating from Products p " +
-                $"join Authors a on a.id = p.authorId " +
-                $"join Genres g on g.id = p.genreId " +
-                $"join Categories c on c.id = p.categoryId " +
-                $"join Commentaries cm on cm.id = p.commentaryId";
+            var selectSqlScript = @"select p.id, p.name, a.id as authorId, a.name as authorName, g.id as genreId, g.name as genreName, c.name as category, 
+                                           cm.comment as comments, price, quantity, rating from Products p 
+                                    join Authors a on a.id = p.authorId 
+                                    join Genres g on g.id = p.genreId 
+                                    join Categories c on c.id = p.categoryId 
+                                    join Commentaries cm on cm.id = p.commentaryId";
             var command = factory.CreateCommand();
             command.Connection = sqlConnection;
             command.CommandText = selectSqlScript;

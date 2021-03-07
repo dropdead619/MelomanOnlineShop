@@ -19,7 +19,7 @@ secretKey: "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6
                 var invoice = client.CreateBill(
         info: new CreateBillInfo
         {
-            BillId = "test_bill",
+            BillId = RandomCodeGenerationService.Generate(10),
             Amount = new MoneyAmount
             {
                 //Это тестовое значение суммы, для тестового режима
@@ -45,8 +45,9 @@ secretKey: "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6
                     }
                     else if (invoice.Status.ValueString == "WAITING")
                     {
+                        Console.Clear();
                         Console.WriteLine("Ваш заказ обрабатывается, пожалуйста подождите...");
-                        Console.ReadLine();
+                        System.Threading.Thread.Sleep(10000);
                         continue;
                     }
                     else

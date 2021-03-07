@@ -13,8 +13,8 @@ namespace Services
             {
                 if (element.PhoneNumber == number)
                 {
-                    var sendingSms = new TwillioMessageService();
-                   // var sendingSms = new SmsKzMessageService();
+                   var sendingSms = new TwillioMessageService();
+                   //var sendingSms = new SmsKzMessageService();
                     if (sendingSms.Send(number) == true)
                     {
                         return true;
