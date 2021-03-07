@@ -1,5 +1,4 @@
 ﻿using Models;
-using Models.Abstract;
 using Services;
 using System;
 using Data;
@@ -12,17 +11,17 @@ namespace UI
         static void Main(string[] args)
         {
             // Для проверки меню создал экземпляр
-            var books = new List<Book>();
-            books.Add(new Book
-            {
-                Id=1,
-                Name="Три Мушкетера",
-                AuthorName = new Author { Id=1,Name="А. Дюма"},
-                GenreName = new Genre { Id=1,Name="Роман"},
-                Price=1000                
-            });
             ConfigurationService.Init();
-            Console.WriteLine(@"*********************************************
+            using (var productDataAccess = new ProductDataAccess()) {
+                var products = productDataAccess.Select();
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"ID: {product.Id}\nName: {product.Name}\nAuthor: {product.AuthorName.Name}\nPrice: {product.Price}\n" +
+                        $"Quantity: {product.Quantity}\nCategory: {product.Category}\nRating: {product.Rating}");
+                }
+            }
+
+/*            Console.WriteLine(@"*********************************************
 *			                    *
 *			                    *
 *   Добро пожаловать в онлайн магазин!      *
@@ -89,7 +88,7 @@ namespace UI
                                     {
                                         case "y":
                                             Console.Write("Введите Артикул необходимого товара: ");
-                                            int.TryParse(Console.ReadLine(),out var item);
+                                            Guid.TryParse(Console.ReadLine(),out var item);
                                             foreach(var book in books)
                                             {
                                                 if (item == book.Id)
@@ -119,7 +118,7 @@ namespace UI
                     case "0":
                         return;
                 }
-            }
+            }*/
         }
     }
 }

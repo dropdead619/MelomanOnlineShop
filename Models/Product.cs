@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Models.Abstract
+namespace Models
 {
-    public abstract class Product
+    public class Product
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
@@ -12,6 +12,7 @@ namespace Models.Abstract
         public double Price { get; set; }
         public int Quantity { get; set; }
         public ICollection<string> Comments { get; set; }
-        public ICollection<double> Rating { get; set; }
+        public double Rating { get; set; }
+        public string Category { get; set; }
     }
 }
