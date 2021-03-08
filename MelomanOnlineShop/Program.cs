@@ -74,17 +74,30 @@ namespace UI
                         {
                             Console.Clear();
                             Console.Write("\nВыберите категорию товара:\n1. Книги\n2. Музыка\n3. Фильмы\n4. Игры\n0. Выход\nВыбор: ");
+                            var productInPage = 0;
                             switch (Console.ReadLine())
                             {
                                 case "1":
                                     Console.Clear();
+                                    productInPage = 0;
                                     foreach (var product in products)
                                     {
                                         if (product.Category == "Книги")
                                         {
-                                            Console.WriteLine($"Артикул {product.Id} - {product.AuthorName.Name} \"{product.Name}\" ({product.GenreName.Name})");
+                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
+                                        }
+                                        productInPage++;
+                                        if (productInPage % 10==0) 
+                                        {
+                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER");
+                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
+                                            {
+                                                break;
+                                            }
+                                            Console.Clear();
                                         }
                                     }
+                                    productInPage = 0;
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
@@ -121,11 +134,22 @@ namespace UI
                                     break;
                                 case "2":
                                     Console.Clear();
+                                    productInPage = 0;
                                     foreach (var product in products)
                                     {
                                         if (product.Category == "Музыка")
                                         {
-                                            Console.WriteLine($"Артикул {product.Id} - {product.AuthorName.Name} \"{product.Name}\" ({product.GenreName.Name})");
+                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
+                                        }
+                                        productInPage++;
+                                        if (productInPage % 10 == 0)
+                                        {
+                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER");
+                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
+                                            {
+                                                break;
+                                            }
+                                            Console.Clear();
                                         }
                                     }
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
@@ -168,11 +192,22 @@ namespace UI
                                     break;
                                 case "3":
                                     Console.Clear();
+                                    productInPage = 0;
                                     foreach (var product in products)
                                     {
                                         if (product.Category == "Фильмы")
                                         {
-                                            Console.WriteLine($"Артикул {product.Id} - {product.AuthorName.Name} \"{product.Name}\" ({product.GenreName.Name})");
+                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
+                                        }
+                                        productInPage++;
+                                        if (productInPage % 10 == 0)
+                                        {
+                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER");
+                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
+                                            {
+                                                break;
+                                            }
+                                            Console.Clear();
                                         }
                                     }
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
@@ -210,11 +245,22 @@ namespace UI
                                     break;
                                 case "4":
                                     Console.Clear();
+                                    productInPage = 0;
                                     foreach (var product in products)
                                     {
                                         if (product.Category == "Игры")
                                         {
-                                            Console.WriteLine($"Артикул {product.Id} - {product.AuthorName.Name} \"{product.Name}\" ({product.GenreName.Name})");
+                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
+                                        }
+                                        productInPage++;
+                                        if (productInPage % 10 == 0)
+                                        {
+                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER");
+                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
+                                            {
+                                                break;
+                                            }
+                                            Console.Clear();
                                         }
                                     }
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
