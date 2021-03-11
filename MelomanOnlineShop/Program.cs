@@ -115,17 +115,31 @@ namespace UI
                                                     Console.WriteLine("\nЕсли Вы хотите купить товар, нажмите Enter. Иначе нажмите Escape");
                                                     if (Console.ReadKey().Key == ConsoleKey.Enter)
                                                     {
-                                                        var qiwi = new QiwiPaymentService();
-                                                        if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                        if (product.Quantity > 0)
                                                         {
-                                                            Console.WriteLine("Спасибо за покупку!");
-                                                            Console.ReadLine();
+                                                            var qiwi = new QiwiPaymentService();
+                                                            if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                            {
+                                                                using (var productDataAccess = new ProductDataAccess())
+                                                                {
+                                                                    productDataAccess.Update(product);
+                                                                    products = productDataAccess.Select();
+                                                                }
+                                                                Console.WriteLine("Спасибо за покупку!");
+                                                                Console.ReadLine();
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                                Console.ReadLine();
+                                                            };
                                                         }
                                                         else
                                                         {
-                                                            Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                            Console.Clear();
+                                                            Console.WriteLine("К сожалению товара нет на складе");
                                                             Console.ReadLine();
-                                                        };
+                                                        }
                                                     }
                                                 }
                                             }
@@ -171,17 +185,31 @@ namespace UI
                                                     Console.WriteLine("\nЕсли Вы хотите купить товар, нажмите Enter. Иначе нажмите Escape");
                                                     if (Console.ReadKey().Key == ConsoleKey.Enter)
                                                     {
-                                                        var qiwi = new QiwiPaymentService();
-                                                        if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                        if (product.Quantity > 0)
                                                         {
-                                                            Console.WriteLine("Спасибо за покупку!");
-                                                            Console.ReadLine();
+                                                            var qiwi = new QiwiPaymentService();
+                                                            if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                            {
+                                                                using (var productDataAccess = new ProductDataAccess())
+                                                                {
+                                                                    productDataAccess.Update(product);
+                                                                    products = productDataAccess.Select();
+                                                                }
+                                                                Console.WriteLine("Спасибо за покупку!");
+                                                                Console.ReadLine();
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                                Console.ReadLine();
+                                                            };
                                                         }
                                                         else
                                                         {
-                                                            Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                            Console.Clear();
+                                                            Console.WriteLine("К сожалению товара нет на складе");
                                                             Console.ReadLine();
-                                                        };
+                                                        }
                                                     }
                                                 }
                                             }
@@ -223,19 +251,34 @@ namespace UI
                                                 {
                                                     Console.Clear();
                                                     Console.WriteLine($"\nКатегория: {product.Category}\nЖанр: {product.GenreName.Name}\nНазвание: {product.Name}\nАвтор: {product.AuthorName.Name}\nЦена: {product.Price}\nКол-во на складе: {product.Quantity}\nРейтинг: {product.Rating}");
+                                                    Console.WriteLine("\nЕсли Вы хотите купить товар, нажмите Enter. Иначе нажмите Escape");
                                                     if (Console.ReadKey().Key == ConsoleKey.Enter)
                                                     {
-                                                        var qiwi = new QiwiPaymentService();
-                                                        if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                        if (product.Quantity > 0)
                                                         {
-                                                            Console.WriteLine("Спасибо за покупку!");
-                                                            Console.ReadLine();
+                                                            var qiwi = new QiwiPaymentService();
+                                                            if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                            {
+                                                                using (var productDataAccess = new ProductDataAccess())
+                                                                {
+                                                                    productDataAccess.Update(product);
+                                                                    products = productDataAccess.Select();
+                                                                }
+                                                                Console.WriteLine("Спасибо за покупку!");
+                                                                Console.ReadLine();
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                                Console.ReadLine();
+                                                            };
                                                         }
                                                         else
                                                         {
-                                                            Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                            Console.Clear();
+                                                            Console.WriteLine("К сожалению товара нет на складе");
                                                             Console.ReadLine();
-                                                        };
+                                                        }
                                                     }
                                                 }
                                             }
@@ -280,17 +323,31 @@ namespace UI
                                                     Console.WriteLine("\nЕсли Вы хотите купить товар, нажмите Enter. Иначе нажмите Escape");
                                                     if (Console.ReadKey().Key == ConsoleKey.Enter)
                                                     {
-                                                        var qiwi = new QiwiPaymentService();
-                                                        if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                        if (product.Quantity > 0)
                                                         {
-                                                            Console.WriteLine("Спасибо за покупку!");
-                                                            Console.ReadLine();
+                                                            var qiwi = new QiwiPaymentService();
+                                                            if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
+                                                            {
+                                                                using (var productDataAccess = new ProductDataAccess())
+                                                                {
+                                                                    productDataAccess.Update(product);
+                                                                    products = productDataAccess.Select();
+                                                                }
+                                                                Console.WriteLine("Спасибо за покупку!");
+                                                                Console.ReadLine();
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                                Console.ReadLine();
+                                                            };
                                                         }
                                                         else
                                                         {
-                                                            Console.WriteLine("Что-то пошло не так! Ожидайте");
+                                                            Console.Clear();
+                                                            Console.WriteLine("К сожалению товара нет на складе");
                                                             Console.ReadLine();
-                                                        };
+                                                        }
                                                     }
                                                 }
                                             }

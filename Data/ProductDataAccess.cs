@@ -64,7 +64,14 @@ namespace Data
 
         public override void Update(Product entity)
         {
-            throw new NotImplementedException();
+            string updateSqlScript = $"update Products set quantity = {entity.Quantity-1} where id = \'{entity.Id}\'";
+
+            using (var command = factory.CreateCommand())
+            {
+                command.Connection = sqlConnection;
+                command.CommandText = updateSqlScript;
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
