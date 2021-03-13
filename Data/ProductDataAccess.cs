@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 
@@ -16,6 +17,37 @@ namespace Data
         public override void Insert(Product entity)
         {
             throw new NotImplementedException();
+        }
+
+        public void InsertRating(Product entity, double ratingValue)
+        {
+            var insertSqlScript = $"Insert into ProductsRating (id, ratingId, productId) " +
+    $"values (\'{Guid.NewGuid()}\',(select top 1 id from Ratings where rating = @userRating), " +
+    $"(select id from Products where id = \'{entity.Id}\'))";
+            using (var transaction = sqlConnection.BeginTransaction())
+                using (var command = factory.CreateCommand())
+            {
+                command.Connection = sqlConnection;
+                command.CommandText = insertSqlScript;
+                try
+                {
+                command.Transaction = transaction;
+
+                    var ratingSqlParameter = command.CreateParameter();
+                    ratingSqlParameter.DbType = System.Data.DbType.Double;
+                    ratingSqlParameter.Value = ratingValue;
+                    ratingSqlParameter.ParameterName = "userRating";
+
+                    command.Parameters.Add(ratingSqlParameter);
+
+                    command.ExecuteNonQuery();
+                transaction.Commit();
+            }
+                catch (DbException)
+            {
+                transaction.Rollback();
+            }
+        }
         }
 
         public override ICollection<Product> Select()
@@ -70,6 +102,23 @@ namespace Data
             {
                 command.Connection = sqlConnection;
                 command.CommandText = updateSqlScript;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateRating(Product entity)
+        {
+            string updateRating = $"update Products " +
+                $"set rating = (select avg(r.rating) from ProductsRating pr " +
+                $"join Ratings r on r.id = pr.ratingId " +
+                $"join Products p on p.id = pr.productId " +
+                $"where pr.productId = \'{entity.Id}\') " +
+                $"where id = \'{entity.Id}\'";
+
+            using (var command = factory.CreateCommand())
+            {
+                command.Connection = sqlConnection;
+                command.CommandText = updateRating;
                 command.ExecuteNonQuery();
             }
         }
