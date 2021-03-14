@@ -82,11 +82,11 @@ namespace Data
                         Name = dataReader["genreName"].ToString()
                     },
                     Comments = new List<string> {
-                       dataReader["comments"].ToString() },
+                        dataReader["comments"].ToString() },
                     Price = double.Parse(dataReader["price"].ToString()),
                     Quantity = int.Parse(dataReader["quantity"].ToString()),
                     Category = dataReader["category"].ToString(),
-                    Rating = double.Parse(dataReader["rating"].ToString())
+                    Rating = double.Parse(string.Format("{0:0.#}", dataReader["rating"]).ToString())
                 });
             }
             dataReader.Close();

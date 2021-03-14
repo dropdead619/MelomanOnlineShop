@@ -74,37 +74,16 @@ namespace UI
                         {
                             Console.Clear();
                             Console.Write("\nВыберите категорию товара:\n1. Книги\n2. Музыка\n3. Фильмы\n4. Игры\n0. Выход\nВыбор: ");
-                            var productInPage = 0;
                             switch (Console.ReadLine())
                             {
                                 case "1":
                                     Console.Clear();
-                                    productInPage = 0;
-                                    foreach (var product in products)
-                                    {
-                                        if (product.Category == "Книги")
-                                        {
-                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
-                                            productInPage++;
-                                        }
-
-                                        if (productInPage % 10 == 0 && productInPage > 0)
-                                        {
-                                            productInPage /= 10;
-                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER (для покупки будет необходим артикул)");
-                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
-                                            {
-                                                break;
-                                            }
-                                            Console.Clear();
-                                        }
-                                    }
-                                    productInPage = 0;
+                                    ProductService.ShowProductsList(ref products, "Книги");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
                                         case "y":
-                                            ProductPurchaseService.Purchase(products);
+                                            ProductService.Purchase(ref products);
                                             break;
                                         case "n":
                                             break;
@@ -112,31 +91,12 @@ namespace UI
                                     break;
                                 case "2":
                                     Console.Clear();
-                                    productInPage = 0;
-                                    foreach (var product in products)
-                                    {
-                                        if (product.Category == "Музыка")
-                                        {
-                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
-                                            productInPage++;
-                                        }
-
-                                        if (productInPage % 10 == 0 && productInPage > 0)
-                                        {
-                                            productInPage /= 10;
-                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER (для покупки будет необходим артикул)");
-                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
-                                            {
-                                                break;
-                                            }
-                                            Console.Clear();
-                                        }
-                                    }
+                                    ProductService.ShowProductsList(ref products, "Музыка");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
                                         case "y":
-                                            ProductPurchaseService.Purchase(products);
+                                            ProductService.Purchase(ref products);
                                             break;
                                         case "n":
                                             break;
@@ -144,30 +104,12 @@ namespace UI
                                     break;
                                 case "3":
                                     Console.Clear();
-                                    productInPage = 0;
-                                    foreach (var product in products)
-                                    {
-                                        if (product.Category == "Фильмы")
-                                        {
-                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
-                                            productInPage++;
-                                        }
-                                        if (productInPage % 10 == 0 && productInPage > 0)
-                                        {
-                                            productInPage /= 10;
-                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER (для покупки будет необходим артикул)");
-                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
-                                            {
-                                                break;
-                                            }
-                                            Console.Clear();
-                                        }
-                                    }
+                                    ProductService.ShowProductsList(ref products, "Фильмы");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
                                         case "y":
-                                            ProductPurchaseService.Purchase(products);
+                                            ProductService.Purchase(ref products);
                                             break;
                                         case "n":
                                             break;
@@ -175,30 +117,12 @@ namespace UI
                                     break;
                                 case "4":
                                     Console.Clear();
-                                    productInPage = 0;
-                                    foreach (var product in products)
-                                    {
-                                        if (product.Category == "Игры")
-                                        {
-                                            Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
-                                            productInPage++;
-                                        }
-                                        if (productInPage % 10 == 0 && productInPage > 0)
-                                        {
-                                            productInPage /= 10;
-                                            Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER (для покупки будет необходим артикул)");
-                                            if (Console.ReadKey().Key == ConsoleKey.Enter)
-                                            {
-                                                break;
-                                            }
-                                            Console.Clear();
-                                        }
-                                    }
+                                    ProductService.ShowProductsList(ref products, "Игры");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
                                         case "y":
-                                            ProductPurchaseService.Purchase(products);
+                                            ProductService.Purchase(ref products);
                                             break;
                                         case "n":
                                             break;
