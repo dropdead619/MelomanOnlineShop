@@ -78,7 +78,7 @@ namespace UI
                             {
                                 case "1":
                                     Console.Clear();
-                                    ProductService.ShowProductsList(ref products, "Книги");
+                                    ProductService.ShowProductsList(products, "Книги");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
@@ -91,7 +91,7 @@ namespace UI
                                     break;
                                 case "2":
                                     Console.Clear();
-                                    ProductService.ShowProductsList(ref products, "Музыка");
+                                    ProductService.ShowProductsList(products, "Музыка");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
@@ -104,7 +104,7 @@ namespace UI
                                     break;
                                 case "3":
                                     Console.Clear();
-                                    ProductService.ShowProductsList(ref products, "Фильмы");
+                                    ProductService.ShowProductsList(products, "Фильмы");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {
@@ -117,7 +117,7 @@ namespace UI
                                     break;
                                 case "4":
                                     Console.Clear();
-                                    ProductService.ShowProductsList(ref products, "Игры");
+                                    ProductService.ShowProductsList(products, "Игры");
                                     Console.WriteLine("\nХотите выбрать товар? (y/n)");
                                     switch (Console.ReadLine())
                                     {

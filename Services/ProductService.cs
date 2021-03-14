@@ -2,6 +2,7 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Services
 {
@@ -34,11 +35,11 @@ namespace Services
                             //Закомментил для теста рейтинга
                             if (/*qiwi.Purchase(decimal.Parse(product.Price.ToString()))*/ true)
                             {
-                               /* using (var productDataAccess = new ProductDataAccess())
+                                using (var productDataAccess = new ProductDataAccess())
                                 {
                                     productDataAccess.Update(product);
                                     products = productDataAccess.Select();
-                                }*/
+                                }
                                 Console.WriteLine("Спасибо за покупку!");
                                 Console.WriteLine("Поставить оценку товару? (y/n)");
                                 switch (Console.ReadLine())
@@ -86,28 +87,45 @@ namespace Services
             }
         }
 
-        public static void ShowProductsList(ref ICollection<Product> products, string category)
+        public static void ShowProductsList(ICollection<Product> products, string category)
         {
-            var productInPage = 0;
-            foreach (var product in products)
+            int parePage = 10;
+            int currentPage = 1;
+            int countProduct = products.Where(product => product.Category == category).Count();
+            
+            while (true)
             {
-                if (product.Category == category)
+                var productList = products.Where(product=>product.Category==category)
+                .Skip((currentPage - 1) * parePage)
+                .Take(parePage)
+                .ToList();
+                Console.Clear();
+                Console.WriteLine("Список товаров: ");
+                foreach (var product in productList)
                 {
                     Console.WriteLine($"{product.AuthorName.Name} \"{product.Name}\" - Артикул: {product.Id}");
-                    productInPage++;
                 }
-
-                if (productInPage % 10 == 0 && productInPage > 0)
+                Console.WriteLine("\n<= пред. страница\t след.страница =>");
+                Console.WriteLine("Купить - ENTER");
+                switch (Console.ReadKey().Key)
                 {
-                    productInPage /= 10;
-                    Console.WriteLine("\nДля перехода на след.страницу нажмите любую клавишу\nЕсли хотите купить товар, нажмите ENTER (для покупки будет необходим артикул)");
-                    if (Console.ReadKey().Key == ConsoleKey.Enter)
-                    {
+                    case ConsoleKey.RightArrow:
+                        if (countProduct / parePage >= currentPage)
+                        {
+                            currentPage++;
+                        }
                         break;
-                    }
-                    Console.Clear();
+                    case ConsoleKey.LeftArrow:
+                        if (currentPage > 1)
+                        {
+                            currentPage--;
+                        }
+                        break;
+                    case ConsoleKey.Enter:
+                        return;
                 }
             }
+
         }
     }
 }
