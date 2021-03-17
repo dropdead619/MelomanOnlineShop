@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Models.Abstract;
+using System;
 
 namespace Models
 {
-    public class User
+    public class User : Entity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string PhoneNumber { get; set; }       
     }
 }

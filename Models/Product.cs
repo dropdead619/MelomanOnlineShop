@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Models.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace Models
 {
-    public class Product
+    public class Product : Entity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public Author AuthorName { get; set; }
         public Genre GenreName { get; set; }

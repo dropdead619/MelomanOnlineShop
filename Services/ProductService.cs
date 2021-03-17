@@ -32,8 +32,7 @@ namespace Services
                         if (product.Quantity > 0)
                         {
                             var qiwi = new QiwiPaymentService();
-                            //Закомментил для теста рейтинга
-                            if (/*qiwi.Purchase(decimal.Parse(product.Price.ToString()))*/ true)
+                            if (qiwi.Purchase(decimal.Parse(product.Price.ToString())))
                             {
                                 using (var productDataAccess = new ProductDataAccess())
                                 {

@@ -53,9 +53,7 @@ namespace Services
             else
             {
                 return false;
-            }
-            
-            
+            }                     
         }
     }
 }

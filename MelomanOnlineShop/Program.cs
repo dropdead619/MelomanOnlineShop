@@ -10,7 +10,6 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            // Для проверки меню создал экземпляр
             ConfigurationService.Init();
             ICollection<Product> products;
             using (var productDataAccess = new ProductDataAccess())
@@ -50,26 +49,24 @@ namespace UI
                         }
                         break;
                     case "2":
-                        // Временно закомментил, чтобы меню тестить 
-
-                        //Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
-                        //try
-                        //{
-                        //    if (AuthUtil.Authorization(Console.ReadLine()) == true)
-                        //    {
-                        //        Console.WriteLine("Вы успешно авторизованы! Для продолжения нажмите любую клавишу");
-                        //        Console.ReadLine();
-                        //    }
-                        //    else
-                        //    {
-                        //        Console.WriteLine("Введены не верные данные, повторите попытку");
-                        //        break;
-                        //    }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    Console.WriteLine(ex.Message);
-                        //}
+                        Console.WriteLine("Пожалуйста, введите ваш номер телефона: (пример: 7XXXXXXXXXXX)");
+                        try
+                        {
+                            if (AuthUtil.Authorization(Console.ReadLine()) == true)
+                            {
+                                Console.WriteLine("Вы успешно авторизованы! Для продолжения нажмите любую клавишу");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Введены не верные данные, повторите попытку");
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         while (true)
                         {
                             Console.Clear();
